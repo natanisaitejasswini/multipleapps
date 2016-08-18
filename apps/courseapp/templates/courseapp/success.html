@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<html>
+<head>
+  <title>Delete a Course
+  </title>
+  {%load staticfiles%}
+  <link rel="stylesheet" href="{% static 'courseapp/css/djangocourse.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <h3>Are you sure you want to delete the following course</h3>
+   <p> Name: {{course.name}}</p>
+   <p> Description: {{course.description}}</p>
+    <form action='/courses/no' method = 'post'>
+    {% csrf_token %}
+      <input type = 'submit' value = 'no'>
+    </form>
+    <form action= '/courses/yes/{{course.id}}' method = 'post'>
+    {% csrf_token %}
+      <input type = 'submit' value ='Yes! I want to delete this'>
+    </form>
+   
+</body>
+</html>
+ 

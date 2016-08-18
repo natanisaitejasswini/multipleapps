@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<html>
+<head>
+  <title>Email Validation</title>
+  {%load staticfiles%}
+   <link rel="stylesheet" href="{% static 'email2app/css/djangoemail.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<p class="green">The email address you entered({{request.session.email}})is a vaild emailaddress! Thank You!</p>
+  	<h4>Emails Address Entered!</h4><hr>
+  	{%for email in emails%}
+  	<p> <a href="/delete/{{email.id}}">{{email.email}}
+  	{{email.created_at}}</a></p>
+ 	{%endfor%}
+ 	<form action='/goback' method = 'post'>
+ 		{% csrf_token %}
+ 		<input type='submit' value = 'goback'>
+ 	</form>
+</body>
+</html>
+ 

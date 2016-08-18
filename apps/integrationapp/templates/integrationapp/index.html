@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<html>
+<head>
+  <title>An Integration Project</title>
+  {%load staticfiles%}
+  <link rel="stylesheet" href="{% static 'integrationapp/css/integration.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<form action = "/adder/add" method = 'post'>
+		{% csrf_token %}
+		Users:<select>
+			{%for user in users%}
+				<option>{{user.first_name}}</option>
+			{%endfor%}
+		</select>
+		Courses:<select>
+			{%for course in courses%}
+				<option>{{course.name}}</option>
+			{%endfor%}
+		</select>
+		<input type='submit' value='Add User To course'>
+	</form>
+	<table>
+		<tr>
+			<th>Course ID</th>
+			<th>Title</th>
+			<th>Number of Users</th>
+		</tr>
+		{%for course in courses%}
+			<tr>
+				<td>{{course.id}}</td>
+				<td>{{course.name}}</td>
+				<td>{{course.courseusers}}</td>
+
+			</tr>
+		{%endfor%}
+	</table>
+	<a href='/courses'>CourseApp</a>
+</body>
+</html>
+ 

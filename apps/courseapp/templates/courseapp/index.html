@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<html>
+<head>
+  <title>Add a Student to all bootcamp courses
+  </title>
+  {%load staticfiles%}
+  <link rel="stylesheet" href="{% static 'courseapp/css/djangocourse.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <h3>Add a new Course</h3>
+    <form action='/courses/course' method='POST'>
+        {% csrf_token %}
+       <p><label for="email">Name: <input type="text" name="name"></label></p>
+       <p><label for="description">Description: <textarea name="description" rows="2"></textarea></label></p>
+        <input type="submit" value="Add">
+    </form>
+    <table>
+    	<thead>Courses</thead>
+        <tr>
+			<th>Course Name<hr></th>
+			<th>Description<hr></th>
+			<th>DateAdded<hr></th>
+			<th>Actions<hr></th>
+		</tr>
+		{%for course in courses%}
+		<tr>
+			<td>{{course.name}}</td>
+			<td>{{course.description}}</td>
+			<td>{{course.created_at}}</td>
+			<td><a href='/courses/select_page/{{course.id}}'>Remove</a><td>
+		</tr>
+		{%endfor%}
+    </table>
+    <a href='/'>Login/Reg</a>
+    <a href='/ninjas'>NinjaGold</a>
+    <a href='/adder'>User Courses</a>
+</body>
+</html>
+ 
